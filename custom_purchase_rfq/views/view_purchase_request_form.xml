@@ -1,0 +1,18 @@
+<record id="view_purchase_request_form" model="ir.ui.view">
+    <field name="name">purchase.request.form</field>
+    <field name="model">purchase.request</field>
+    <field name="arch" type="xml">
+        <form>
+            <group>
+                <field name="name"/>
+                <field name="requester_id"/>
+                <field name="department_id"/>
+                <field name="product_id"/>
+                <field name="quantity"/>
+                <field name="description"/>
+            </group>
+        </form>
+    </field>
+</record>
+
+<menuitem id="menu_purchase_request" name="Purchase Requests" parent="purchase.menu_purchase_root"/>

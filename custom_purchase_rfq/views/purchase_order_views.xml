@@ -1,0 +1,35 @@
+<odoo>
+    <!-- Inherit the RFQ Form View from Purchase Module -->
+    <record id="view_purchase_order_form_inherit" model="ir.ui.view">
+        <field name="name">purchase.order.form.inherit</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <!-- Keep the partner_id field and add vendor_ids -->
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="vendor_ids" widget="many2many_tags" string="Vendors"/>
+            </xpath>
+            
+            <!-- Add a section for Bids -->
+            <xpath expr="//sheet" position="inside">
+                <group string="Bids">
+                    <field name="bid_ids">
+                        <tree>
+                            <field name="vendor_id"/>
+                            <field name="price"/>
+                            <field name="bid_date"/>
+                        </tree>
+                    </field>
+                </group>
+            </xpath>
+
+            <!-- Add Winning Bid Field and Button -->
+            <xpath expr="//sheet" position="inside">
+                <group string="Winning Bid">
+                    <field name="winning_bid_id"/>
+                    <button name="confirm_winning_bid" string="Confirm Winning Bid" type="object" class="btn-primary"/>
+                </group>
+
+        </field>
+    </record>
+</odoo>
